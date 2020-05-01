@@ -19,8 +19,9 @@ node('haimaxy-jnlp') {
     stage('Push') {
         echo "4.Push Docker Image Stage"
         withCredentials([usernamePassword(credentialsId: 'dockerHub', passwordVariable: 'dockerHubPassword', usernameVariable: 'dockerHubUser')]) {
-            sh "docker login -u ${dockerHubUser} -p ${dockerHubPassword}"
-            sh "docker push cnych/jenkins-demo:${build_tag}"
+            sh "docker login -u ${dockerHubUser} -p ${dockerHubPassword} https://registry.dkzamp.com"
+            sh "docker tag cnych/jenkins-demo:${build_tag} registry.dkzamp.com/library/jenkins-demo:${build_tag}"
+            sh "docker push registry.dkzamp.com/library/jenkins-demo:${build_tag}"
         }
     }
     stage('Deploy') {
