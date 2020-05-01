@@ -1,5 +1,5 @@
 node('haimaxy-jnlp') {
-    stage('Prepare') {
+    stage('prepare') {
         echo "1.Prepare Stage"
         checkout scm
         script {
@@ -10,7 +10,7 @@ node('haimaxy-jnlp') {
         }
     }
     stage('Test') {
-      echo "2.Test Stage1"
+      echo "2.Test Stage"
     }
     stage('Build') {
         echo "3.Build Docker Image Stage"
